@@ -2,6 +2,8 @@ package com.project.QuizApp.controller;
 
 
 import com.project.QuizApp.model.Question;
+import com.project.QuizApp.model.QuestionWrapper;
+import com.project.QuizApp.model.Response;
 import com.project.QuizApp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,4 +22,15 @@ public class QuizController {
  public ResponseEntity<String> createQuiz(@PathVariable String category, @PathVariable Integer numQ, @PathVariable String title){
         return quizService.createQuiz(category, numQ,title);
     }
+
+    @GetMapping("get/{title}")
+    public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable String title){
+            return quizService.getQuizQuestions(title);
+    }
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> submitQuiz(@PathVariable String id, @RequestBody List<Response> responses){
+        return quizService.marks(id,responses);
+    }
 }
+
+

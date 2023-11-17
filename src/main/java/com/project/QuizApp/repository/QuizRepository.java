@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface QuizRepository extends MongoRepository<Quiz, String> {
 
+    Quiz findByTitle(String title);
+
 }
